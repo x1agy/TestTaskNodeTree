@@ -1,0 +1,9 @@
+.branchesButton{
+    width: fit-content;
+    padding: 5px;
+    margin-top: 10px;
+}
+.branchesDiv{
+    display: flex;
+    flex-direction: column;
+}

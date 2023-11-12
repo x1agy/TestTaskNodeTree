@@ -1,8 +1,8 @@
 import React from "react";
 
-function RemoveButton(){
+function RemoveButton({removeBranch}){
     return(
-        <button>Remove</button>
+        <button onClick={() => removeBranch()}>Remove</button>
     )
 }
 

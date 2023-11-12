@@ -3,7 +3,7 @@ import React from "react";
 function AddButton({setBranches, branchesTree}){
     return(
         <button
-            onClick={() => setBranches([...branchesTree, `Node ${branchesTree.length}`])}
+            onClick={() => setBranches()}
         >Add</button>
     )
 }

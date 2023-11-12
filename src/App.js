@@ -9,17 +9,39 @@ import Branches from "./Components/Branch/Branches";
 function App() {
 
   const [branchesTree, setBranches] = useState([])
+  const [selectedBranch, setSelectedBranch] = useState()
   
-  function removeBranch(id){
-
+  function removeBranch(){
+    if(selectedBranch){
+      const newTree = branchesTree.filter(item => item.id !== selectedBranch.id);
+      if(branchesTree[1].margin > 0){
+        let count = 0;
+        let counting = true;
+        while(counting){
+          if(branchesTree[count + 1].margin > 0){
+            count++
+          }
+          else{
+            counting = false;
+          }
+        }
+        newTree.splice(0, count)
+      }
+      newTree.map((item, index) => item.id = index + 1)
+      setBranches(newTree)
+      setSelectedBranch()
+    }
   }
 
-  function addBranch(selectedBranch){
+  function addBranchToTree(){
     if(selectedBranch){
-
+      branchesTree.splice(selectedBranch.id, 0, {name: `Node ${branchesTree.length}`, margin: selectedBranch.margin + 20})
+      branchesTree.map((item, index) => item.id = index + 1)
+      setBranches([...branchesTree])
+      console.log(branchesTree)
     }
     else{
-      setBranches(...branchesTree, `node ${branchesTree.length}`)
+      setBranches([...branchesTree, {name: `Node ${branchesTree.length}`, margin: 0, id: branchesTree.length + 1}])
     }
   }
 
@@ -29,13 +51,16 @@ function App() {
       <div className="treeBranches">
         <Branches 
           branchesTree = {branchesTree}
+          setSelectedBranch = {(obj) => setSelectedBranch(obj)}
+          selectedBranch = {selectedBranch}
       /></div>
       <div className="treeButtons">
         <AddButton 
-          setBranches = {(branch) => setBranches(branch)}
-          branchesTree = {branchesTree}
+          setBranches = {() => addBranchToTree()}
         />
-        <RemoveButton />
+        <RemoveButton 
+          removeBranch = {() => removeBranch()}
+        />
         <EditButton />
         <ResetButton />
       </div>
