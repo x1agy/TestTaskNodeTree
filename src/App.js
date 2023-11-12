@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css"
 import AddButton from "./Components/Buttons/Add";
 import RemoveButton from "./Components/Buttons/Remove";
@@ -8,9 +8,17 @@ import Branches from "./Components/Branch/Branches";
 
 function App() {
 
-  const [branchesTree, setBranches] = useState([]);
+  const [branchesTree, setBranches] = useState(() => {
+    const storedValue = localStorage.getItem("tree");
+    return storedValue ? JSON.parse(storedValue) : []
+  });
   const [selectedBranch, setSelectedBranch] = useState();
   const [showFormBool, setShowFormBool] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('tree', JSON.stringify(branchesTree));
+  }, [branchesTree])
+
   
   function removeBranch(){
     if(selectedBranch){
@@ -53,6 +61,11 @@ function App() {
     }
   }
 
+  function reseteBranches(){
+    setBranches([]);
+    setSelectedBranch();
+  }
+
   return (
     <div className="App">
       <div className="treeHeader">Tree</div>
@@ -75,7 +88,9 @@ function App() {
           setShowFormBool = {(value) => setShowFormBool(value)}
           branchesTree = {branchesTree}
         />
-        <ResetButton />
+        <ResetButton 
+          reseteBranches = {() => reseteBranches()}
+        />
       </div>
     </div>
   );

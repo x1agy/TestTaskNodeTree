@@ -1,8 +1,10 @@
 import React from "react";
 
-function ResetButton(){
+function ResetButton({reseteBranches}){
     return(
-        <button>Reset</button>
+        <button
+            onClick={() => reseteBranches()}
+        >Reset</button>
     )
 }
 
