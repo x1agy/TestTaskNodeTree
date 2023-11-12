@@ -1,8 +1,10 @@
 import React from "react";
 
-function AddButton(){
+function AddButton({setBranches, branchesTree}){
     return(
-        <button>Add</button>
+        <button
+            onClick={() => setBranches([...branchesTree, `Node ${branchesTree.length}`])}
+        >Add</button>
     )
 }
 

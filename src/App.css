@@ -1,11 +1,11 @@
-*{
-    background-color: aqua;
+body{
+    display: flex;
+    justify-content: center;
 }
 .App{
     border: 1px solid green;
     width: 500px;
     height: fit-content;
-    
 }
 .treeHeader{
     font-size: 30px;
@@ -16,6 +16,7 @@
 .treeBranches{
     min-height: 100px;
     max-height: fit-content;
+    padding: 10px;
 }
 .treeButtons{
     display: flex;
