@@ -8,8 +8,9 @@ import Branches from "./Components/Branch/Branches";
 
 function App() {
 
-  const [branchesTree, setBranches] = useState([])
-  const [selectedBranch, setSelectedBranch] = useState()
+  const [branchesTree, setBranches] = useState([]);
+  const [selectedBranch, setSelectedBranch] = useState();
+  const [showFormBool, setShowFormBool] = useState(false);
   
   function removeBranch(){
     if(selectedBranch){
@@ -45,6 +46,13 @@ function App() {
     }
   }
 
+  function editBranch(value){
+    if(selectedBranch){
+      branchesTree.map(item => item.id === selectedBranch.id ? item.name = value : item)
+      setShowFormBool(false)
+    }
+  }
+
   return (
     <div className="App">
       <div className="treeHeader">Tree</div>
@@ -53,6 +61,8 @@ function App() {
           branchesTree = {branchesTree}
           setSelectedBranch = {(obj) => setSelectedBranch(obj)}
           selectedBranch = {selectedBranch}
+          showFormBool = {showFormBool}
+          editBranch = {(value) => editBranch(value)}
       /></div>
       <div className="treeButtons">
         <AddButton 
@@ -61,7 +71,10 @@ function App() {
         <RemoveButton 
           removeBranch = {() => removeBranch()}
         />
-        <EditButton />
+        <EditButton 
+          setShowFormBool = {(value) => setShowFormBool(value)}
+          branchesTree = {branchesTree}
+        />
         <ResetButton />
       </div>
     </div>

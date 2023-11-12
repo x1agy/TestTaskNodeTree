@@ -27,6 +27,7 @@ body{
     margin: 10px;
     width: 100px;
     border: 1px solid green;
+    background-color: white;
 }
 .treeButtons button:focus{
     border: 2px solid green;
