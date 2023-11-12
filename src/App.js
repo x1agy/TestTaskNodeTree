@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css"
+import AddButton from "./Components/Buttons/Add";
+import RemoveButton from "./Components/Buttons/Remove";
+import EditButton from "./Components/Buttons/Edit";
+import ResetButton from "./Components/Buttons/Reset";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="treeHeader">Tree</div>
+      <div className="treeBranches"></div>
+      <div className="treeButtons">
+        <AddButton />
+        <RemoveButton />
+        <EditButton />
+        <ResetButton />
+      </div>
     </div>
   );
 }
