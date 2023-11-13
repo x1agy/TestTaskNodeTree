@@ -10,6 +10,7 @@ function EditButton({setShowFormBool, branchesTree}){
             setButtonBG("white")
         }, 2000)
     }
+    
     return(
         <button 
             onClick={() => {
